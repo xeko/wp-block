@@ -10,6 +10,14 @@
 	"supports": {
 		"html": false
 	},
+	"attributes": {
+		"message": {
+			"type": "string",
+			"source": "text",
+			"selector": "div",
+			"default": ""
+		}
+	},
 	"textdomain": "dev-blocks",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
