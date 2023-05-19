@@ -11,7 +11,8 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps, RichText } from '@wordpress/block-editor';
+import { SelectControl } from '@wordpress/components';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -29,10 +30,33 @@ import './editor.scss';
  *
  * @return {WPElement} Element to render.
  */
-export default function Edit() {
+export default function Edit(props) {
+    const {attributes, setAttributes} = props;
+    const blockProps = useBlockProps({
+        tagName: "div",
+        className: "my-richtext",
+        value: attributes.content,
+        placeholder: "テキストを入力...",
+        style: {color: attributes.color || null},
+        onChange: (newContent) => {
+            setAttributes({content: newContent});
+        }
+    });
+    
 	return (
-		<p { ...useBlockProps() }>
-			{ __( 'Block Two – hello from the editor!', 'my-blocks' ) }
-		</p>
+        <>
+            <RichText {...blockProps} />
+            <SelectControl
+                value = {attributes.color}
+                options={[
+                    {value: '', label: "Chon mau"},
+                    {value: 'red', label: "Mau do"},
+                    {value: 'blue', label: "Mau xanh"},
+                ]}
+                onChange={(newColor) => {
+                    setAttributes({color: newColor});
+                }}
+            />
+        </>		
 	);
 }

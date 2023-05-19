@@ -3,12 +3,39 @@
 	"apiVersion": 2,
 	"name": "create-block/block-two",
 	"version": "0.1.0",
-	"title": "Block Two",
-	"category": "widgets",
-	"icon": "smiley",
-	"description": "Example block scaffolded with Create Block tool.",
+	"title": "Block Richtext",
+	"category": "text",
+	"icon": "welcome-write-blog",
+	"description": "Richtextを使ってブロックを実装",
 	"supports": {
-		"html": false
+		"html": false,
+		"className": false
+	},
+	"styles": [
+		{
+			"name": "default",
+			"label": "Default",
+			"isDefault": true
+		},
+		{
+			"name": "red-border",
+			"label": "Mau do"
+		},
+		{
+			"name": "blue-border",
+			"label": "Mau xanh"
+		}
+	],
+	"attributes": {
+		"content": {
+			"type": "string",
+			"source": "html",
+			"selector": ".my-richtext"
+		},
+		"color": {
+			"type": "string",
+			"default": ""
+		}
 	},
 	"textdomain": "my-blocks",
 	"editorScript": "file:./index.js",
