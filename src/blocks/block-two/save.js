@@ -22,8 +22,9 @@ export default function save(props) {
         className: "my-richtext",
         value: attributes.content,
         style: {
-            color: attributes.color || null,
-            textAlign: attributes.alignment || null
+            color: attributes.color,
+            textAlign: attributes.alignment || null,
+            backgroundColor: attributes.mau_nen
         }
     });
 

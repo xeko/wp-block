@@ -31,10 +31,14 @@
 			"source": "html",
 			"selector": ".my-richtext"
 		},
-		"color": {
+		"mau_chu" : {
 			"type": "string",
-			"default": ""
+			"default": "#333"
 		},
+		"mau_nen": {
+			"type": "string",
+			"default": "#fff"
+		},		
 		"alignment": {
 			"type": "string",
 			"default": "none"

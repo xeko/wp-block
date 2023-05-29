@@ -16,9 +16,13 @@ import {
     RichText, 
     InspectorControls, 
     BlockControls,
-    AlignmentToolbar
+    AlignmentToolbar,
+    ColorPalette
 } from '@wordpress/block-editor';
-import { SelectControl, PanelBody } from '@wordpress/components';
+import { 
+    Panel, 
+    PanelBody 
+} from '@wordpress/components';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -44,7 +48,8 @@ export default function Edit(props) {
         value: attributes.content,
         placeholder: "テキストを入力...",
         style: {
-            color: attributes.color || null,
+            color: attributes.mau_chu,
+            backgroundColor: attributes.mau_nen,
             textAlign: attributes.alignment || null
         },
         onChange: (newContent) => {
@@ -64,19 +69,22 @@ export default function Edit(props) {
                 />
             </BlockControls>
             <InspectorControls>
-                <PanelBody title="Chon mau">
-                    <SelectControl
-                    value = {attributes.color}
-                    options={[
-                        {value: '', label: "Chon mau"},
-                        {value: 'red', label: "Mau do"},
-                        {value: 'blue', label: "Mau xanh"},
-                    ]}
-                    onChange={(newColor) => {
-                        setAttributes({color: newColor});
-                    }}
-                />
-                </PanelBody>
+                <Panel header="Chon mau">
+                    <PanelBody title="Mau Nen">
+                        <ColorPalette
+                            onChange={(newMaunen) => {
+                                setAttributes({mau_nen: newMaunen})
+                            }}
+                        />
+                    </PanelBody>
+                    <PanelBody title="Chon Chu">
+                        <ColorPalette
+                            onChange={(newTextColor) => {
+                                setAttributes({mau_chu: newTextColor})
+                            }}
+                        />
+                    </PanelBody>
+                </Panel>
             </InspectorControls>            
         </>		
 	);
