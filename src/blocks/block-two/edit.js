@@ -11,8 +11,8 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps, RichText } from '@wordpress/block-editor';
-import { SelectControl } from '@wordpress/components';
+import { useBlockProps, RichText, InspectorControls } from '@wordpress/block-editor';
+import { SelectControl, PanelBody } from '@wordpress/components';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -46,17 +46,21 @@ export default function Edit(props) {
 	return (
         <>
             <RichText {...blockProps} />
-            <SelectControl
-                value = {attributes.color}
-                options={[
-                    {value: '', label: "Chon mau"},
-                    {value: 'red', label: "Mau do"},
-                    {value: 'blue', label: "Mau xanh"},
-                ]}
-                onChange={(newColor) => {
-                    setAttributes({color: newColor});
-                }}
-            />
+            <InspectorControls>
+                <PanelBody title="Chon mau">
+                    <SelectControl
+                    value = {attributes.color}
+                    options={[
+                        {value: '', label: "Chon mau"},
+                        {value: 'red', label: "Mau do"},
+                        {value: 'blue', label: "Mau xanh"},
+                    ]}
+                    onChange={(newColor) => {
+                        setAttributes({color: newColor});
+                    }}
+                />
+                </PanelBody>
+            </InspectorControls>            
         </>		
 	);
 }
