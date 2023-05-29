@@ -11,7 +11,13 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps, RichText, InspectorControls } from '@wordpress/block-editor';
+import { 
+    useBlockProps, 
+    RichText, 
+    InspectorControls, 
+    BlockControls,
+    AlignmentToolbar
+} from '@wordpress/block-editor';
 import { SelectControl, PanelBody } from '@wordpress/components';
 
 /**
@@ -37,7 +43,10 @@ export default function Edit(props) {
         className: "my-richtext",
         value: attributes.content,
         placeholder: "テキストを入力...",
-        style: {color: attributes.color || null},
+        style: {
+            color: attributes.color || null,
+            textAlign: attributes.alignment || null
+        },
         onChange: (newContent) => {
             setAttributes({content: newContent});
         }
@@ -46,6 +55,14 @@ export default function Edit(props) {
 	return (
         <>
             <RichText {...blockProps} />
+            <BlockControls>
+                <AlignmentToolbar
+                    value={attributes.alignment}
+                    onChange={(newAlignment) => {
+                        setAttributes({alignment: newAlignment})
+                    }}
+                />
+            </BlockControls>
             <InspectorControls>
                 <PanelBody title="Chon mau">
                     <SelectControl

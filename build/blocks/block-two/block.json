@@ -8,7 +8,6 @@
   "icon": "welcome-write-blog",
   "description": "Richtextを使ってブロックを実装",
   "supports": {
-    "html": false,
     "className": false
   },
   "styles": [
@@ -35,6 +34,10 @@
     "color": {
       "type": "string",
       "default": ""
+    },
+    "alignment": {
+      "type": "string",
+      "default": "none"
     }
   },
   "textdomain": "my-blocks",

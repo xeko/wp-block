@@ -21,7 +21,10 @@ export default function save(props) {
         tagName: "div",
         className: "my-richtext",
         value: attributes.content,
-        style: {color: attributes.color || null}
+        style: {
+            color: attributes.color || null,
+            textAlign: attributes.alignment || null
+        }
     });
 
 	return (
