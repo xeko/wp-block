@@ -23,5 +23,6 @@
 function create_block_dev_blocks_block_init() {
 	register_block_type( __DIR__ . '/build/blocks/block-one' );
     register_block_type( __DIR__ . '/build/blocks/block-two' );
+    register_block_type( __DIR__ . '/build/blocks/block-three' );
 }
 add_action( 'init', 'create_block_dev_blocks_block_init' );
