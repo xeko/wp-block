@@ -38,6 +38,14 @@
     "textColor": {
       "type": "string",
       "default": "#fff"
+    },
+    "customBackgroundColor": {
+      "type": "string",
+      "default": "#fff"
+    },
+    "customTextColor": {
+      "type": "string",
+      "default": "#000"
     }
   }
 }
