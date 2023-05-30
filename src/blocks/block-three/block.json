@@ -20,6 +20,18 @@
 			"type": "string",
 			"source": "html",
 			"selector": "h4"
+		},
+		"alignment":{
+			"type": "string",
+			"default": "left"
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": "#333"
+		},
+		"textColor": {
+			"type": "string",
+			"default": "#fff"
 		}
 	}
 }

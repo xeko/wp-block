@@ -5,18 +5,48 @@ import {
     RichText,
     BlockControls,
     AlignmentToolbar,
+    InspectorControls,
+    PanelColorSettings,
+    ContrastChecker,
 } from '@wordpress/block-editor';
 
 import {
     ToolbarGroup, 
     ToolbarButton,
     ToolbarDropdownMenu,
+    PanelBody,
+    TextControl,
+    TextareaControl,
+    ToggleControl,
+    ColorPalette,
+    AnglePickerControl,
+    ColorPicker,
 } from '@wordpress/components';
 
 import './editor.scss';
 
 export default function Edit({attributes, setAttributes}) {
-    const {text} = attributes;
+    const {
+        text, 
+        alignment, 
+        backgroundColor, 
+        textColor,
+    } = attributes;
+
+    const onChangeText = (newText) => {
+        setAttributes({text : newText});
+    };
+
+    const onChangeAlignment = (newAlignment) => {
+        setAttributes({alignment: newAlignment});
+    };
+    const onBackgroundColorChange = (newBgColor) => {
+        setAttributes({backgroundColor: newBgColor});
+    };
+
+    const onTextColorChange = (newTextColor) => {
+        setAttributes({textColor: newTextColor});
+    };
 
 	return (
         <>
@@ -84,15 +114,47 @@ export default function Edit({attributes, setAttributes}) {
 
             <BlockControls>
                 <AlignmentToolbar/>
-            </BlockControls>
+            </BlockControls>            
+
+            <InspectorControls>
+                <PanelColorSettings
+                    title={ __( '色の設定', 'text-box' ) }
+                    icon="admin-appearance"
+                    initialOpen
+                    disableCustomColors={ false }
+                    colorSettings={ [
+                        {
+                            value: backgroundColor,
+                            onChange: onBackgroundColorChange,
+                            label: __( '背景色', 'text-box' ),
+                        },
+                        {
+                            value: textColor,
+                            onChange: onTextColorChange,
+                            label: __( '文字色', 'text-box' ),
+                        },
+                    ] }
+                >
+                {/* コントラストがうすすぎないかチェック */}
+                <ContrastChecker
+                    textColor={ textColor }
+                    backgroundColor={ backgroundColor }
+                />
+                </PanelColorSettings>
+            </InspectorControls>
 
             <RichText
-                { ...useBlockProps() }
-                onChange={(value) => setAttributes({text: value})}
-                value = {text}
-                placeholder = {__('入力してください。', 'block-three')}
+                { ...useBlockProps( {
+                    className: `text-box-align-${ alignment }`,
+                    style: {
+                        backgroundColor,
+                        color: textColor,
+                    },
+                } ) }
+                onChange={ onChangeText }
+                value={ text }
+                placeholder={ __( '入力してください。', 'text-box' ) }
                 tagName="h4"
-                // allowedFormats={['core/bold']}
             />
         </>
 	);
